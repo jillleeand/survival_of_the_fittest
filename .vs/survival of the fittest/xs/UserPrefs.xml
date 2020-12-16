@@ -1,0 +1,29 @@
+﻿<Properties StartupConfiguration="{6D46CB5E-EE99-F779-917C-B61BAF49E847}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/lightSwitch.cs">
+    <Files>
+      <File FileName="Assets/attractor.cs" Line="15" Column="1" IsPinned="True" />
+      <File FileName="Assets/life.cs" Line="110" Column="69" />
+      <File FileName="Assets/lifeCircle.cs" Line="37" Column="4" />
+      <File FileName="Assets/removeTheton.cs" Line="9" Column="1" />
+      <File FileName="Assets/Shooting.cs" />
+      <File FileName="Assets/Patrol.cs" />
+      <File FileName="Assets/Waypoints.cs" Line="1" Column="1" />
+      <File FileName="Assets/generator.cs" Line="39" Column="21" />
+      <File FileName="Assets/circle.cs" Line="44" Column="29" />
+      <File FileName="Assets/kluton.cs" />
+      <File FileName="Assets/floton.cs" />
+      <File FileName="Assets/addMeToWaypoints.cs" />
+      <File FileName="Assets/lifeGen.cs" />
+      <File FileName="Assets/idleMove.cs" Line="13" Column="1" />
+      <File FileName="Assets/lightSwitch.cs" Line="38" Column="32" />
+      <File FileName="Assets/feedStack.cs" Line="24" Column="38" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="a7a0f80c-f4e2-4808-80e0-6ca9db34eb2a" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
