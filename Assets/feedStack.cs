@@ -5,15 +5,19 @@ using UnityEngine;
 public class feedStack : MonoBehaviour
 {
     private Waypoints Wp;
-    private life l;
-    private bool dd;
-    private bool scoutColliding = false;
+    private lifeCircle l;
+    private bool d;
+    public bool scoutColliding = false;
+
+    static lifeCircle scoutLife;
+
 
     // Start is called before the first frame update
     void Start()
     {
         Wp = GameObject.FindGameObjectWithTag("Waypoints").GetComponent<Waypoints>();
-        l = GetComponent<life>();
+        l = GetComponent<lifeCircle>();
+        scoutLife = GameObject.FindGameObjectWithTag("TScout").GetComponent<lifeCircle>();
     }
 
     // Update is called once per frame
@@ -21,17 +25,30 @@ public class feedStack : MonoBehaviour
     {
         if (l.phase != "Satisfied")
         {
-            dd = l.d;
-            if (dd)
+            if (Wp.waypoints.Count == 0)
             {
-                if (scoutColliding == false)
+                if (scoutLife.foodStack.Count >= 5)
                 {
-                    Wp.waypoints.Insert(0, gameObject.transform);
+                    if (scoutColliding == false)
+                    {
+                        Wp.waypoints.Insert(0, transform);
+                    }
+                }
+            }
+
+            else
+            {
+                if (scoutLife.foodStack.Count >= 5)
+                {
+                    if ((Wp.waypoints[0] != transform) && (Wp.waypoints[0].CompareTag("Triangle") == false && scoutColliding == false))
+                    {
+                        Wp.waypoints.Insert(0, transform);
+                    }
                 }
             }
         }
 
-        if ((l.phase == "Satisfied" && Wp.waypoints.Contains(gameObject.transform)) || (Wp.waypoints.Contains(gameObject.transform)) && (Wp.waypoints[0] != gameObject.transform))
+        if ((l.phase == "Satisfied" && Wp.waypoints.Contains(transform))) // || ((Wp.waypoints.Contains(transform) && (Wp.waypoints[0] != transform))))
         {
             Wp.waypoints.Remove(gameObject.transform);
         }
@@ -59,7 +76,7 @@ public class feedStack : MonoBehaviour
         if (other.CompareTag("TScout"))
         {
             scoutColliding = true;
-            if (Wp.waypoints.Count > 0)
+            if (Wp.waypoints.Count > 0 || other.GetComponent<lifeCircle>().foodStack.Count == 0)
             {
                 if (Wp.waypoints[0] == gameObject.transform)
                 {
@@ -79,7 +96,7 @@ public class feedStack : MonoBehaviour
             scoutColliding = true;
             if (Wp.waypoints.Count > 0)
             {
-                if (Wp.waypoints[0] == gameObject.transform)
+                if (Wp.waypoints[0] == transform)
                 {
                     Wp.waypoints.Remove(Wp.waypoints[0]);
                 }
@@ -99,5 +116,8 @@ public class feedStack : MonoBehaviour
 
     }
 
-
+    public void scoutChange()
+    {
+        scoutLife = GameObject.FindGameObjectWithTag("TScout").GetComponent<lifeCircle>();
+    }
 }

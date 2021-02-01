@@ -7,14 +7,14 @@ public class lightSwitch : MonoBehaviour
 {
     private Light2D yl;
     private Light2D rl;
-    private life l;
+    private lifeCircle l;
 
     // Start is called before the first frame update
     void Start()
     {
         yl = transform.Find("yellowLight").gameObject.GetComponent<Light2D>();
         rl = transform.Find("redLight").gameObject.GetComponent<Light2D>();
-        l = GetComponent<life>();
+        l = GetComponent<lifeCircle>();
     }
 
     // Update is called once per frame

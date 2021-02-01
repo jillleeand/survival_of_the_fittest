@@ -10,8 +10,10 @@ public class generator : MonoBehaviour
 	public GameObject phyton;
 	private float radius;
 	private Vector3 randomPos;
-	private float makeCountdown = 5f;
-	private float eatCountdown = 2f;
+	public float countdownAssign;
+
+	public float makeCountdown;
+	public float eatCountdown = 1f;
 	private Waypoints Wp;
 
 
@@ -24,21 +26,22 @@ public class generator : MonoBehaviour
 	private void Update()
 	{
 		if (flotons > 0)
-		{
+        {
 			eatCountdown -= Time.deltaTime;
-			makeCountdown -= Time.deltaTime * flotons;
-			if (makeCountdown <= 0)
-			{
-				Make();
-				makeCountdown = 2.5f;
-			}
+        }
 
-			if (eatCountdown <= 0)
-            {
-				flotons -= 1;
-				eatCountdown = 2f;
-            }
+		makeCountdown -= Time.deltaTime + ((float)flotons / 60);
+		if (makeCountdown <= 0)
+		{
+			Make();
+			makeCountdown = countdownAssign;
 		}
+
+		if (eatCountdown <= 0)
+        {
+			flotons -= 1;
+			eatCountdown = 1f;
+        }	
 	}
 
 	void Make()

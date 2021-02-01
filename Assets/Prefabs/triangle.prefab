@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6010502473800607588}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0181427, y: -0.0031175613, z: -0.0004720996}
+  m_LocalPosition: {x: 0.0181427, y: 1.07, z: -0.0004720996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6823260803286589948}
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myScout: TScout
-  phyton: {fileID: 7214518039507672124, guid: 5919db5b13aff4c789dfc212c24fad6a, type: 3}
+  food: {fileID: 7214518039507672124, guid: 5919db5b13aff4c789dfc212c24fad6a, type: 3}
   attractorSpeed: 5
 --- !u!58 &6588396071902710884
 CircleCollider2D:
@@ -128,11 +128,13 @@ GameObject:
   - component: {fileID: 6823260803286589945}
   - component: {fileID: 6823260803286589950}
   - component: {fileID: 6823260803286589951}
-  - component: {fileID: 6823260803286589944}
-  - component: {fileID: 6823260803286589946}
-  - component: {fileID: 6823260803286589941}
   - component: {fileID: 6342625107595056316}
   - component: {fileID: 5449189851565581799}
+  - component: {fileID: -5808986088742675986}
+  - component: {fileID: 7604638403880747374}
+  - component: {fileID: 9186674587535550815}
+  - component: {fileID: -2137144594644394288}
+  - component: {fileID: 3279929815997864175}
   m_Layer: 0
   m_Name: triangle
   m_TagString: Triangle
@@ -176,7 +178,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -269,52 +271,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6823260803286589944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6823260803286589890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cdf0d59beff642ab8a65a5feb8e986b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  phase: Satisfied
-  phytons: 0
-  floton: {fileID: 7203427192778480397, guid: d77879cadd3114822b706d6df8ba32cd, type: 3}
-  dropPoint: {fileID: 1079738265553315633}
-  floCountdown: 0
-  countdown: 0
-  lifetime: 150
-  d: 0
---- !u!114 &6823260803286589946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6823260803286589890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5f6d3c862fcd418eabd4caff92bfa28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6823260803286589941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6823260803286589890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caf038835185a43349bb4b84e4a6ba92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cycle: 10
-  triangle: {fileID: 6823260803286589890}
 --- !u!114 &6342625107595056316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,6 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fb1d25e181774c8995b58f3b79a880d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoutColliding: 0
 --- !u!114 &5449189851565581799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,6 +296,85 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddd5ce9900f974c9b92f57df577f3be3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-5808986088742675986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6823260803286589890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25768ddc71dc34db79d9106ed5521fb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Wp: {fileID: 0}
+  cycle: 30
+  rangeLimit: 0.8
+--- !u!114 &7604638403880747374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6823260803286589890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a1b876c8357c4ab2aeee7cceeb40104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9186674587535550815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6823260803286589890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e952e4d8d0de34357961bec7e97cc012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  food: {fileID: 7214518039507672124, guid: 5919db5b13aff4c789dfc212c24fad6a, type: 3}
+  food2: {fileID: 0}
+  phase: Satisfied
+  satisfied: 50
+  needy: 30
+  precarious: 10
+  d: 0
+  countdown: 0
+  foodStack: []
+  foodPerish: 30
+--- !u!114 &-2137144594644394288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6823260803286589890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12ac154e4cbcc423581fdd5e92e8b389, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 7203427192778480397, guid: d77879cadd3114822b706d6df8ba32cd,
+    type: 3}
+  dropPoint: {fileID: 1079738265553315633}
+  countdown: 7
+--- !u!114 &3279929815997864175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6823260803286589890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69c1ce29dd0e2402a83a9448691110e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setCountdown: 150
+  countdown: 0
 --- !u!1001 &3769393130304387736
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3664516052319038967}
   - component: {fileID: 9097991790569193686}
   - component: {fileID: 7763226581351072548}
-  - component: {fileID: 115985368029711697}
+  - component: {fileID: 1323202281927549147}
   m_Layer: 0
   m_Name: theton
   m_TagString: Theton
@@ -53,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -144,7 +144,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.13417053, y: 0.11402559}
   m_EdgeRadius: 0
---- !u!114 &115985368029711697
+--- !u!114 &1323202281927549147
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,6 +153,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 2579414880278211937}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0cd07d8b624347cab8073944dbc94ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 69c1ce29dd0e2402a83a9448691110e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  setCountdown: 5
+  countdown: 0

@@ -10,6 +10,12 @@ public class playerMovement : MonoBehaviour
     Vector2 mousePos;
     public Camera cam;
 
+    void Start()
+    {
+        cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+    }
+
+
     // Update is called once per frame
     void Update()
     {

@@ -6,86 +6,76 @@ public class patrolSquare : MonoBehaviour
 {
     public float speed;
     private Waypoints Wp;
-
-    private int waypointIndex;
     private lifeCircle lc;
+    public GameObject home;
+    private int count = 0;
 
-    public GameObject tscout;
 
-    void Start()
+    private void Start()
     {
         Wp = GameObject.FindGameObjectWithTag("Triangles").GetComponent<Waypoints>();
         lc = GetComponent<lifeCircle>();
-        StartCoroutine(keepItMoving());
+        home = Instantiate(home, transform.position, transform.rotation);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void Update()
     {
-
-        if ((other.CompareTag("Triangle")) || (other.CompareTag("TScout")))
+        if (Wp.waypoints.Count > 0 && lc.phase != "Satisfied")
         {
-
-            if (other.CompareTag("TScout"))
+            if (Wp.waypoints[0])
             {
-                Debug.Log("TScout eaten");
-                Transform nextscout = Wp.waypoints[Random.Range(0, Wp.waypoints.Count)];
-                GameObject replacement = Instantiate(tscout, nextscout.position, nextscout.rotation);
-                Destroy(nextscout.gameObject);
+                transform.position = Vector2.MoveTowards(transform.position, Wp.waypoints[0].position, speed * Time.deltaTime);
             }
 
-            Destroy(other.gameObject);
-            if (lc.phase == "Needy")
+            else
             {
-                lc.countdown = 120f;
-                lc.phase = "Satisfied";
+                Wp.waypoints.Remove(Wp.waypoints[0]);
             }
 
-            else if (lc.phase == "Precarious")
-            {
-                lc.countdown = 80f;
-                lc.phase = "Needy";
-            }
         }
+
+        else if (lc.phase == "Satisfied")
+        {
+            transform.position = Vector2.MoveTowards(transform.position, home.transform.position, speed * Time.deltaTime);
+
+        }
+
+        count++;
     }
 
+    //private void OnTriggerEnter2D(Collider2D other)
+    //{
 
-    IEnumerator keepItMoving()
-    {
-        for (; ; )
-        {
-            if (lc.phase == "Satisfied")
-            {
-                yield return null;
-            }
+    //    if ((other.CompareTag("Triangle")) || (other.CompareTag("TScout")))
+    //    {
 
-            else if (Wp.waypoints.Count > 0)
-            {
-                if (Wp.waypoints[0])
-                {
-                    transform.position = Vector2.MoveTowards(transform.position, Wp.waypoints[0].position, speed * Time.deltaTime);
-                }
+    //        if (other.CompareTag("TScout"))
+    //        {
+    //            other.GetComponent<deathScout>().Death();
+    //        }
 
-                else
-                {
-                    Wp.waypoints.Remove(Wp.waypoints[0]);    
-                }
-            }
+    //        Wp.waypoints.Remove(other.transform);
+    //        if (lc.phase == "Needy")
+    //        {
+    //            lc.countdown = lc.satisfied;
+    //            lc.phase = "Satisfied";
+    //        }
 
-            yield return null;
-            //if (Vector2.Distance(transform.position, Wp.waypoints[waypointIndex].position) < 0.01f)
-            //{
-            //	Debug.Log(Wp.waypoints[waypointIndex].position);
-            //	Debug.Log(transform.position);
-            //	if (waypointIndex < Wp.waypoints.Length - 1)
-            //	{
-            //		waypointIndex++;
-            //	}
-            //	else
-            //	{
-            //		Destroy(gameObject);
-            //	}
-            //}
-        }
-    }
+    //        else if (lc.phase == "Precarious")
+    //        {
+    //            lc.countdown = lc.needy;
+    //            lc.phase = "Needy";
+    //        }
+
+    //        if (other)
+    //        {
+    //            Debug.Log(other);
+    //            Destroy(other.gameObject);
+    //        }
+    //    }
+    //}
+
+
+
 
 }

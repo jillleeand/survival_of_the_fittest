@@ -47,6 +47,7 @@
   <PropertyGroup>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Unity/VSTU</UnityProjectGenerator>
+    <UnityProjectGeneratorVersion>2.8.4.0</UnityProjectGeneratorVersion>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneOSX:2</UnityBuildTarget>
     <UnityVersion>2019.4.11f1</UnityVersion>
@@ -70,26 +71,35 @@
     <Compile Include="Assets\Patrol.cs" />
     <Compile Include="Assets\Shooting.cs" />
     <Compile Include="Assets\Waypoints.cs" />
+    <Compile Include="Assets\Window_Pointer.cs" />
     <Compile Include="Assets\addMeToWaypoints.cs" />
     <Compile Include="Assets\attractor.cs" />
     <Compile Include="Assets\attractorCircle.cs" />
     <Compile Include="Assets\circle.cs" />
+    <Compile Include="Assets\deathByTheton.cs" />
+    <Compile Include="Assets\deathScout.cs" />
     <Compile Include="Assets\eatTriangle.cs" />
     <Compile Include="Assets\feedStack.cs" />
     <Compile Include="Assets\floton.cs" />
     <Compile Include="Assets\generator.cs" />
+    <Compile Include="Assets\grabCount.cs" />
     <Compile Include="Assets\idleMove.cs" />
     <Compile Include="Assets\kluton.cs" />
     <Compile Include="Assets\life.cs" />
     <Compile Include="Assets\lifeCircle.cs" />
     <Compile Include="Assets\lifeGen.cs" />
     <Compile Include="Assets\lifeScout.cs" />
+    <Compile Include="Assets\lifeSubSquare.cs" />
     <Compile Include="Assets\lightSwitch.cs" />
     <Compile Include="Assets\makePhytons.cs" />
+    <Compile Include="Assets\particle.cs" />
     <Compile Include="Assets\patrolSquare.cs" />
     <Compile Include="Assets\phyton.cs" />
     <Compile Include="Assets\playerMovement.cs" />
+    <Compile Include="Assets\produceParticle.cs" />
+    <Compile Include="Assets\remove.cs" />
     <Compile Include="Assets\removeTheton.cs" />
+    <Compile Include="Assets\reproduce.cs" />
     <Compile Include="Assets\rotate.cs" />
     <Reference Include="UnityEngine">
       <HintPath>/Applications/Unity/Hub/Editor/2019.4.11f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>

@@ -16,6 +16,8 @@ TagManager:
   - Floton
   - Circles
   - Kluton
+  - Circle
+  - VCam
   layers:
   - Default
   - TransparentFX

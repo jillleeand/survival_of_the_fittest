@@ -10,9 +10,6 @@ public class circle : MonoBehaviour
     public GameObject circ;
     private float rrange;
 
-    public GameObject kluton;
-    public Transform dropPoint;
-    public float kluCountdown = 7f;
 
 
     // Start is called before the first frame update
@@ -21,17 +18,6 @@ public class circle : MonoBehaviour
         Wp = GameObject.FindGameObjectWithTag("Circles").GetComponent<Waypoints>();
         Wp.waypoints.Add(transform);
         StartCoroutine("Spawn");
-    }
-
-
-    private void Update()
-    {
-        kluCountdown -= Time.deltaTime;
-        if (kluCountdown <= 0)
-        {
-            GameObject flo = Instantiate(kluton, dropPoint.position, transform.rotation);
-            kluCountdown = 7f;
-        }
     }
 
     IEnumerator Spawn()

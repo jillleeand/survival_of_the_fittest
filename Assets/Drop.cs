@@ -8,12 +8,12 @@ public class Drop : MonoBehaviour
     public GameObject phyton;
     public Transform dropPoint;
 
-    private lifeScout ct;
+    private lifeCircle ct;
 
     // Start is called before the first frame update
     void Start()
     {
-        ct = GetComponent<lifeScout>();
+        ct = GetComponent<lifeCircle>();
     }
 
     // Update is called once per frame
@@ -31,10 +31,10 @@ public class Drop : MonoBehaviour
 
     public void DropPhyton()
     {
-        if (ct.phytons > 0)
+        if (ct.foodStack.Count > 0)
         {
             GameObject p = Instantiate(phyton, dropPoint.position, dropPoint.rotation);
-            ct.phytons = ct.phytons - 1;
+            ct.foodStack.RemoveAt(0);
         }
     }
 }

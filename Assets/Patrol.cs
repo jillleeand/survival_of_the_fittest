@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class Patrol : MonoBehaviour
 {
-	public float speed;
-	private Waypoints Wp;
-	
-	private int waypointIndex;
-    private int phytons;
+    public float speed;
+    private Waypoints Wp;
+
+    private int waypointIndex;
+    private int foodCount;
+    private Vector3 dropPoint;
 
     public GameObject phyton;
-	
+
+    private lifeCircle myLife;
+    private lifeCircle otherLife;
+    private List<float> myfs;
+
     void Start()
     {
         Wp = GameObject.FindGameObjectWithTag("Waypoints").GetComponent<Waypoints>();
-        phytons = GetComponent<lifeScout>().phytons;
+        myfs = GetComponent<lifeCircle>().foodStack;
+        foodCount = GetComponent<lifeCircle>().foodStack.Count;
         StartCoroutine(keepItMoving());
-	}
+    }
 
     IEnumerator keepItMoving()
     {
@@ -29,11 +35,6 @@ public class Patrol : MonoBehaviour
                 if (Wp.waypoints[0])
                 {
                     transform.position = Vector2.MoveTowards(transform.position, Wp.waypoints[0].position, speed * Time.deltaTime);
-                }
-
-                else
-                {
-                    Wp.waypoints.Remove(Wp.waypoints[0]);
                 }
             }
 
@@ -55,13 +56,33 @@ public class Patrol : MonoBehaviour
     }
 
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Triangle") && ((other.GetComponent<life>().phase != "Satisfied")))
+        if (other.CompareTag("Triangle") && (other.GetComponent<lifeCircle>().phase != "Satisfied") && (myfs.Count > 0))
         {
-            phytons--;
-            GameObject p = Instantiate(phyton, transform.position, transform.rotation);
-        }
+            otherLife = other.GetComponent<lifeCircle>();
+            myfs.RemoveAt(0);
+            if (otherLife.phase == "Needy")
+            {
+                otherLife.countdown = otherLife.satisfied;
+                otherLife.phase = "Satisfied";
+                if (Wp.waypoints[0] == other.transform)
+                {
+                    Wp.waypoints.Remove(Wp.waypoints[0]);
+                }
 
+            if (otherLife.phase == "Precarious")
+            {
+                otherLife.countdown = otherLife.needy;
+                otherLife.phase = "Needy";
+                if (Wp.waypoints[0] == other.transform)
+                {
+                    Wp.waypoints.Remove(Wp.waypoints[0]);
+                }
+
+                }
+            }
+
+        }
     }
 }

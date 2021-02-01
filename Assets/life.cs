@@ -9,26 +9,30 @@ public class life : MonoBehaviour
 	public string phase = "Satisfied";
 	public int phytons = 0;
 	public GameObject floton;
-	public Transform dropPoint;
-	public float floCountdown;
-	public float countdown = 75f;
-	public float lifetime = 150f;
+	public float floCountdown = 7f;
+
+	public float satisfied = 75f;
+	public float needy = 50f;
+	public float precarious = 25f;
+
+
+	public float lifetime;
 	public bool d = false;
+
 
 	private Waypoints Wp;
 	private lifeScout scoutLife;
+	private Transform dropPoint;
+	public float countdown;
 
-    private void Awake()
-    {
-		floCountdown = 7f;
-		countdown = 75f;
-		lifetime = 150f;
-    }
 
-    void Start()
+	void Start()
     {
 		Wp = GameObject.FindGameObjectWithTag("Waypoints").GetComponent<Waypoints>();
 		scoutLife = GameObject.FindGameObjectWithTag("TScout").GetComponentInParent<lifeScout>();
+		dropPoint = transform.Find("dropPoint");
+		lifetime = 150f;
+		countdown = satisfied;
 	}
 
 	// Update is called once per frame
@@ -44,42 +48,37 @@ public class life : MonoBehaviour
 			Destroy(gameObject);
 		}
 
-		if (countdown <= 60f)
+		if (countdown <= needy)
 		{
 			d = (gameObject.CompareTag("Triangle")) && (scoutLife.phytons > 5) && (Wp.waypoints.Count > 0) && (Wp.waypoints[0] != gameObject.transform) && (Wp.waypoints[0].CompareTag("Triangle") == false);
-			//if (d)
-   //         {
-   //             Debug.Log("Insert");
-   //             Wp.waypoints.Insert(0, gameObject.transform);
-   //         }
 
-            if (phytons > 0)
+			if (phytons > 0)
 			{
 				phytons = phytons - 1;
-				if (countdown <= 45f)
+				if (countdown <= precarious)
 				{
-					countdown = 60f;
+					countdown = needy;
 					phase = "Needy";
 				}
 
 				else
 				{
-					countdown = 75f;
+					countdown = satisfied;
 					phase = "Satisfied";
 					floCountdown = 7f;
 					if (Wp.waypoints.Count > 0)
 					{
-						//if (Wp.waypoints[0] == gameObject.transform)
-						//{
-						//	Wp.waypoints.Remove(Wp.waypoints[0]);
-						//}
-					}
+                        if (Wp.waypoints[0] == gameObject.transform)
+                        {
+                            Wp.waypoints.Remove(Wp.waypoints[0]);
+                        }
+                    }
 				}
 			}
 
 			else
             {
-				if (countdown <= 45f)
+				if (countdown <= precarious)
 				{
 					phase = "Precarious";
 				}
@@ -122,15 +121,25 @@ public class life : MonoBehaviour
 
 			if (phase == "Needy")
 			{
-				countdown = 75f;
+				countdown = satisfied;
 				phase = "Satisfied";
+				if (gameObject.CompareTag("Triangle") && (Wp.waypoints[0] == gameObject.transform))
+				{
+					Wp.waypoints.Remove(Wp.waypoints[0]);
+				}
 
 			}
 
 			else if (phase == "Precarious")
 			{
-				countdown = 60f;
+				countdown = needy;
 				phase = "Needy";
+
+				if (gameObject.CompareTag("Triangle") && (Wp.waypoints[0] == gameObject.transform))
+				{
+					Wp.waypoints.Remove(Wp.waypoints[0]);
+				}
+
 			}
 
 			else if (phase == "Satisfied")
